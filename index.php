@@ -1,16 +1,22 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
 <?php include 'config.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Polling Unit Result Viewer</title>
+   <link rel="stylesheet" href="css/add.css">
 </head>
-<body>
+<body class="center">
   <h2>View Polling Unit Results</h2>
 
   <form method="GET" action="">
     <!-- Select LGA -->
-    <label for="lga_id">Select Local Government:</label>
-    <select name="lga_id" id="lga_id" onchange="this.form.submit()">
+    <label for="lga_id" class="section-heading">Select Local Government:</label>
+    <select name="lga_id" id="lga_id" onchange="this.form.submit()" class="inputstyle">
       <option value="">-- Select LGA --</option>
       <?php
         $lga_query = "SELECT * FROM lga";
@@ -27,7 +33,7 @@
     <!-- Select Polling Unit (only after LGA is selected) -->
     <?php if (isset($_GET['lga_id']) && $_GET['lga_id'] != ""): ?>
       <label for="polling_unit_id">Select Polling Unit:</label>
-      <select name="polling_unit_id" id="polling_unit_id" onchange="this.form.submit()">
+      <select name="polling_unit_id" id="polling_unit_id" onchange="this.form.submit()"class="inputstyle">
         <option value="">-- Select Polling Unit --</option>
         <?php
           $lga_id = $_GET['lga_id'];
@@ -52,7 +58,7 @@
 
         $results = $conn->query("SELECT * FROM announced_pu_results WHERE polling_unit_uniqueid = '$pu_id'");
         if ($results->num_rows > 0) {
-            echo "<ul>";
+            echo "<ul class='center'>";
             while ($row = $results->fetch_assoc()) {
                 echo "<li>{$row['party_abbreviation']}: {$row['party_score']}</li>";
             }

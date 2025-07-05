@@ -11,7 +11,7 @@
 
   <form method="GET" action="">
     <label for="lga_id">Select Local Government:</label>
-    <select name="lga_id" id="lga_id" required class="inputstyle" onchange="this.form.submit()">
+    <select name="lga_id" id="lga_id" required class="inputstyle">
       <option value="">-- Select LGA --</option>
       <?php
         $lga_query = "SELECT * FROM lga";
